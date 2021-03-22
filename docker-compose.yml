@@ -1,0 +1,34 @@
+version: '3'
+services:
+
+  mysql:
+    image: mysql:5.7
+    container_name: mysql_finance
+    #command: --init-file /creation_base.sql
+    volumes:
+      - finance_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+    networks:
+       - network_finance
+
+  grafana:
+    image: grafana/grafana
+    container_name: grafana_finance
+    ports:
+      - '3000:3000'
+    environment:
+      GF_INSTALL_PLUGINS: percona-percona-app
+    networks:
+      - network_finance
+
+networks:
+  network_finance:
+
+volumes:
+  finance_data:

@@ -1,0 +1,317 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "id": 1,
+  "links": [],
+  "panels": [
+    {
+      "datasource": null,
+      "description": "TOP 10 en chiffres d'affaire",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "semi-dark-green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 4,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": false,
+        "text": {}
+      },
+      "pluginVersion": "7.4.3",
+      "targets": [
+        {
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "titre",
+          "rawQuery": true,
+          "rawSql": "SELECT\n  TIMESTAMP(CONCAT(CONVERT(annee, CHAR), \":01:01\")) AS \"time\",\n  titre AS metric,\n  CA AS \"CA\"\nFROM donnees_finance\nWHERE\n  annee = 2021\nORDER BY CA DESC\nLIMIT 10",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "CA"
+                ],
+                "type": "column"
+              },
+              {
+                "params": [
+                  "CA"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "table": "donnees_finance",
+          "timeColumn": "annee",
+          "timeColumnType": "int",
+          "where": [
+            {
+              "datatype": "int",
+              "name": "",
+              "params": [
+                "annee",
+                "=",
+                "2019"
+              ],
+              "type": "expression"
+            }
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Meilleurs CA 2021",
+      "type": "gauge"
+    },
+    {
+      "datasource": null,
+      "description": "TOP 10 inversé sur les excédents bruts d'exploitation",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "semi-dark-red",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 24,
+        "x": 0,
+        "y": 4
+      },
+      "id": 5,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": false,
+        "text": {}
+      },
+      "pluginVersion": "7.4.3",
+      "targets": [
+        {
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "titre",
+          "rawQuery": true,
+          "rawSql": "SELECT\n  TIMESTAMP(CONCAT(CONVERT(annee, CHAR), \":01:01\")) AS \"time\",\n  titre AS metric,\n  EBE AS \"EBE\"\nFROM donnees_finance\nWHERE\n  annee = 2021\nORDER BY EBE ASC\nLIMIT 10",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "CA"
+                ],
+                "type": "column"
+              },
+              {
+                "params": [
+                  "CA"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "table": "donnees_finance",
+          "timeColumn": "annee",
+          "timeColumnType": "int",
+          "where": [
+            {
+              "datatype": "int",
+              "name": "",
+              "params": [
+                "annee",
+                "=",
+                "2019"
+              ],
+              "type": "expression"
+            }
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Moins bons EBE 2021",
+      "type": "gauge"
+    },
+    {
+      "datasource": null,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "opacity",
+            "hideFrom": {
+              "graph": false,
+              "legend": false,
+              "tooltip": false
+            },
+            "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 10,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "always",
+            "spanNulls": true
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-red",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 24,
+        "x": 0,
+        "y": 8
+      },
+      "id": 2,
+      "options": {
+        "graph": {},
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "right"
+        },
+        "tooltipOptions": {
+          "mode": "single"
+        }
+      },
+      "pluginVersion": "7.4.3",
+      "targets": [
+        {
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "titre",
+          "rawQuery": true,
+          "rawSql": "SELECT\n  TIMESTAMP(CONCAT(CONVERT(annee, CHAR), \":01:01\")) AS \"time\",\n  titre AS metric,\n  CA\nFROM donnees_finance\nORDER BY CA DESC\nLIMIT 30",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "CA"
+                ],
+                "type": "column"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "EBE"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "donnees_finance",
+          "timeColumn": "annee",
+          "timeColumnType": "int",
+          "where": []
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Chiffres d'affaire 2019 à 2021",
+      "type": "timeseries"
+    }
+  ],
+  "refresh": false,
+  "schemaVersion": 27,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "2018-12-31T23:00:00.000Z",
+    "to": "2021-01-09T23:00:00.000Z"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "New dashboard Copy",
+  "uid": "n7sEVZwGz",
+  "version": 1
+}
